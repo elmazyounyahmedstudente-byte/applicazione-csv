@@ -32,7 +32,7 @@ string estrazione(string x, int pos) {
     return parola;
 }
 string visualizza (info arr[],indirizzo x[]);
-void caricadati(info x[],string nome){
+ void caricadati(info x[],string nome){
 	ifstream leggi(nome);
     if(leggi.is_open())
     string riga;
@@ -51,12 +51,28 @@ void caricadati(info x[],string nome){
     } else {
         cout << "Impossibile aprire il file";
     }
-	
-    
-    
-
-   
+void visualizza(info arr[], indirizzo x[]) {
+    cout << endl << "dati salvati" << endl;
+    for (int i = 0; i < 1000; i++) {
+        if (arr[i].descrizionetoponimo == "") {
+            break; 
+        }
+        cout << "Via: " << arr[i].descrizionetoponimo << " Civico: " << arr[i].num << " ISTAT: " << arr[i].sezioneistat << endl;
+    }
 }
+
 int main(int argc, char** argv) {
+    info archivio[1000];
+    indirizzo coordinate[1000];
+    string nomeFile = "dati.csv";
+    int scelta;
+    
+    do {
+        cout << endl << "1- Carica dati" << endl;
+        cout << "2- Mostra dati" << endl;
+        cout << "0- Esci" << endl;
+        cout << "Scegli cosa fare: ";
+        cin >> scelta;
+
 	return 0;
 }
