@@ -9,40 +9,43 @@ string cap;
 string sezioneistat;            
 }; 
 struct indirizzo{
-string lat;
-string lon;
+float lat;
+float lon;
 string location; 
 };
+void caricaDati(info elenco[], int &d) {
+    string riga;
+    ifstream fileInput("Comune_Bergamo_-_Numerazione_civica.csv");
 
-
-string estrazione(string x, int pos) {
-    int contatore=0;
-    string parola;
-    for (int i=0;i<x.length();i++) {
-    	
-        if (x[i] == ',') {
-            contatore++;
-        } else if (contatore==pos) {
-            parola+=x[i];
+    if (fileInput.is_open()) {
+        getline(fileInput, riga); // Salta l'intestazione
+        d = 0;
+       
+        while (getline(fileInput, riga) && d < 1000) {
+            elenco[d].descrizioneToponimo = riga;
+            d++;
         }
-        
-        if (contatore>pos) 
-		break;
+       
+        fileInput.close();
+        cout << "hai caricato i 1000 record" << endl;
+    } else {
+        cout << "impossibile aprire il file" << endl;
     }
-    return parola;
 }
+
+
 string visualizza (info arr[],indirizzo x[]);
  void caricadati(info x[],string nome){
 	ifstream leggi(nome);
     if(leggi.is_open())
     string riga;
     int i=0;
-    getline(leggi,riga);
-    while(i<1000&&getline(leggi, x[i].classetoponimo){
-    	x[i].classetoponimo = estrazione(riga, 0);
-            x[i].descrizionetoponimo = estrazione(riga, 1);
-            x[i].num = estrazione(riga, 2);
-            x[i].subalterno = estrazione(riga, 3);
+    getline(leggi, string riga);
+    while(i<1000&&getline(leggi, x[i].classetoponimo)){
+    	x[i].classetoponimo = estrazione(string riga, 0);
+            x[i].descrizionetoponimo = estrazione(string riga, 1);
+            x[i].num = estrazione(string riga, 2);
+            x[i].subalterno = estrazione(string riga, 3);
             x[i].cap = estrazione(riga, 4);
             x[i].sezioneistat = esrazione (riga,5);
             i++;
@@ -73,6 +76,8 @@ int main(int argc, char** argv) {
         cout << "0- Esci" << endl;
         cout << "Scegli cosa fare: ";
         cin >> scelta;
+    }
+        while (scelta!=0);
 
 	return 0;
 }
